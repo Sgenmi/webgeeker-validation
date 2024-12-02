@@ -18,7 +18,7 @@ class CustomSampleValidation extends CustomExampleValidation
      *      子类的模版在运行时会与父类的 $errorTemplates 合并，
      *      如果出现同名的键, 子类的值会覆盖父类的值
      */
-    protected static $errorTemplates = [
+    protected static array $errorTemplates = [
         'CustomStrIn' => '“{{param}}”只能取这些值: {{valueList}}',
     ];
 
@@ -27,7 +27,7 @@ class CustomSampleValidation extends CustomExampleValidation
      *      子类的文本翻译对照表在运行时会与父类的 $langCodeToTranslations （递归）合并，
      *      如果出现同名的键, 子类的值会覆盖父类的值
      */
-    protected static $langCodeToTranslations = [
+    protected static array $langCodeToTranslations = [
         "zh-tw" => [
             "状态" => "狀態",
         ],

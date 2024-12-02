@@ -32,7 +32,7 @@ class CustomExampleValidation extends CustomDemoValidation
      *      子类的模版在运行时会与父类的 $errorTemplates 合并，
      *      如果出现同名的键, 子类的值会覆盖父类的值
      */
-    protected static $errorTemplates = [
+    protected static array $errorTemplates = [
         'CustomFloatGtLt' => '“{{param}}”必须大于 {{min}} 小于 {{max}}',
     ];
 

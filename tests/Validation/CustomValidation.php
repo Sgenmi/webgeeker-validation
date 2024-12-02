@@ -26,7 +26,7 @@ class CustomValidation extends Validation
      *
      * 输入值一般为字符串
      */
-    protected static $errorTemplates = [
+    protected static array $errorTemplates = [
         // 整型（不提供length检测,因为负数的符号位会让人混乱, 可以用大于小于比较来做到这一点）
         'CustomInt' => '“{{param}}”必须是Custom整数',
         'CustomIntEq' => '“{{param}}”必须等于 {{value}}',

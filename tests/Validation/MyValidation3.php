@@ -17,7 +17,7 @@ class MyValidation3 extends CustomSampleValidation
     ];
 
     // 文本翻译对照表
-    protected static $langCodeToTranslations = [
+    protected static array $langCodeToTranslations = [
         "zh-tw" => [
             "自定义变量必须是整数" => "自定義變量必須是整數",
         ],

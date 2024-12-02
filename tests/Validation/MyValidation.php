@@ -29,7 +29,7 @@ class MyValidation extends CustomValidation
      * “错误提示信息模版”翻译对照表
      * @deprecated
      */
-    protected static $langCodeToErrorTemplates = [
+    protected static array $langCodeToErrorTemplates = [
         "zh-tw" => [
             "“{{param}}”必须是整数" => "“{{param}}”必須是整數",
             "“{{param}}”必须是字符串" => "“{{param}}”必須是字符串",
@@ -41,7 +41,7 @@ class MyValidation extends CustomValidation
     ];
 
     // 文本翻译对照表
-    protected static $langCodeToTranslations = [
+    protected static array $langCodeToTranslations = [
         "zh-tw" => [
             "变量" => "變量",
             "变量必须是整数" => "變量必須是整數",

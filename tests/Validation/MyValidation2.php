@@ -26,7 +26,7 @@ namespace WebGeeker\ValidationTest;
 class MyValidation2 extends CustomValidation
 {
     // 新的“错误提示信息模版”翻译对照表
-    protected static $langCode2ErrorTemplates = [
+    protected static array $langCode2ErrorTemplates = [
         "zh-tw" => [
             'Int' => '“{{param}}”必須是整數', // 🌝
             'CustomInt' => '“{{param}}”必須是Custom整數',
@@ -45,7 +45,7 @@ class MyValidation2 extends CustomValidation
      * 旧的“错误提示信息模版”翻译对照表（不建议使用）
      * @deprecated
      */
-    protected static $langCodeToErrorTemplates = [
+    protected static array $langCodeToErrorTemplates = [
         "zh-tw" => [
             "“{{param}}”必须是整数" => "“{{param}}”必須是整數啊",
             "“{{param}}”必须是字符串" => "“{{param}}”必須是字符串啊",

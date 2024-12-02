@@ -46,7 +46,7 @@ class CustomCaseValidation extends Validation
      *      子类的模版在运行时会与父类的 $errorTemplates 合并，
      *      如果出现同名的键, 子类的值会覆盖父类的值
      */
-    protected static $errorTemplates = [
+    protected static array $errorTemplates = [
         'CustomStartWith' => '“{{param}}”必须以"{{prefix}}"开头"',
     ];
 

@@ -22,15 +22,31 @@ namespace WebGeeker\Validation;
  *
  * elaborate description
  */
+
+if (!function_exists('str_contains')) {
+    function str_contains(string $string,string $need ):bool
+    {
+        if(strpos($string,$need)!==false){
+            return true;
+        }
+        return false;
+    }
+}
+
+
 class Validation
 {
     //region integer
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateInt($value, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false)
+//            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && !str_contains($value,'.'))
                 return $value;
         } elseif ($type === 'integer') {
             return $value;
@@ -44,11 +60,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntEq($value, $equalVal, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && !str_contains($value,'.')) {
                 $val = intval($value);
                 if ($val == $equalVal)
                     return $value;
@@ -76,11 +95,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntNe($value, $equalVal, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && !str_contains($value,'.')) {
                 $val = intval($value);
                 if ($val != $equalVal)
                     return $value;
@@ -108,11 +130,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGt($value, $min, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val > $min)
                     return $value;
@@ -140,11 +165,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGe($value, $min, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val >= $min)
                     return $value;
@@ -172,11 +200,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntLt($value, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val < $max)
                     return $value;
@@ -204,11 +235,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntLe($value, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val <= $max)
                     return $value;
@@ -236,11 +270,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGtLt($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val > $min && $val < $max)
                     return $value;
@@ -269,11 +306,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGeLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val >= $min && $val <= $max)
                     return $value;
@@ -302,11 +342,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGtLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val > $min && $val <= $max)
                     return $value;
@@ -335,11 +378,14 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIntGeLt($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $val = intval($value);
                 if ($val >= $min && $val < $max)
                     return $value;
@@ -379,14 +425,14 @@ class Validation
      * @return string
      * @throws ValidationException
      */
-    public static function validateIntIn($value, $valueList, $reason = null, $alias = 'Parameter')
+    public static function validateIntIn($value, $valueList, $reason = null, $alias = 'Parameter'):string
     {
         if (is_array($valueList) === false || count($valueList) === 0)
             throw new ValidationException("验证器IntIn的参数格式错误, 必须提供整数的列表, 以逗号分隔");
 
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $intValue = intval($value);
                 if (in_array($intValue, $valueList, true))
                     return $value;
@@ -430,7 +476,7 @@ class Validation
 
         $type = gettype($value);
         if ($type === 'string') {
-            if (is_numeric($value) && strpos($value, '.') === false) {
+            if (is_numeric($value) && str_contains($value, '.') === false) {
                 $intValue = intval($value);
                 if (!in_array($intValue, $valueList, true))
                     return $value;
@@ -462,6 +508,9 @@ class Validation
 
     //region float
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloat($value, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -479,6 +528,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGt($value, $min, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -511,6 +563,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGe($value, $min, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -543,6 +598,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatLt($value, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -575,6 +633,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatLe($value, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -607,6 +668,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGtLt($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -640,6 +704,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGeLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -673,6 +740,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGtLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -706,6 +776,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFloatGeLt($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -743,13 +816,16 @@ class Validation
 
     //region bool
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBool($value, $reason = null, $alias = 'Parameter')
     {
         if (is_bool($value)) {
             return $value;
         } else if (is_string($value)) {
-            $valuelc = mb_strtolower($value);
-            if ($valuelc === 'true' || $valuelc === 'false')
+            $valueLc = mb_strtolower($value);
+            if ($valueLc === 'true' || $valueLc === 'false')
                 return $value;
         }
 
@@ -761,13 +837,16 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBoolTrue($value, $reason = null, $alias = 'Parameter')
     {
         if (is_bool($value) && $value) {
             return $value;
         } else if (is_string($value)) {
-            $valuelc = mb_strtolower($value);
-            if ($valuelc === 'true')
+            $valueLc = mb_strtolower($value);
+            if ($valueLc === 'true')
                 return $value;
         }
 
@@ -779,13 +858,16 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBoolFalse($value, $reason = null, $alias = 'Parameter')
     {
         if (is_bool($value) && $value === false) {
             return $value;
         } else if (is_string($value)) {
-            $valuelc = mb_strtolower($value);
-            if ($valuelc === 'false')
+            $valueLc = mb_strtolower($value);
+            if ($valueLc === 'false')
                 return $value;
         }
 
@@ -797,6 +879,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBoolSmart($value, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -818,6 +903,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBoolSmartTrue($value, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -839,6 +927,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateBoolSmartFalse($value, $reason = null, $alias = 'Parameter')
     {
         $type = gettype($value);
@@ -864,6 +955,9 @@ class Validation
 
     //region string
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateStr($value, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -954,7 +1048,7 @@ class Validation
     public static function validateStrIn($value, $valueList, $reason = null, $alias = 'Parameter')
     {
         if (is_array($valueList) === false || count($valueList) === 0)
-            throw new ValidationException("“${alias}”参数的验证模版(StrIn:)格式错误, 必须提供可取值的列表");
+            throw new ValidationException(sprintf("“%s”参数的验证模版(StrIn:)格式错误, 必须提供可取值的列表",$alias));
 
         if (is_string($value)) {
             if (in_array($value, $valueList, true))
@@ -994,7 +1088,7 @@ class Validation
     public static function validateStrNotIn($value, $valueList, $reason = null, $alias = 'Parameter')
     {
         if (is_array($valueList) === false || count($valueList) === 0)
-            throw new ValidationException("“${alias}”参数的验证模版(StrNotIn:)格式错误, 必须提供不可取的值的列表");
+            throw new ValidationException(sprintf("“%s”参数的验证模版(StrNotIn:)格式错误, 必须提供不可取的值的列表",$alias));
 
         if (is_string($value)) {
             if (!in_array($value, $valueList, true))
@@ -1097,7 +1191,7 @@ class Validation
     public static function validateStrInI($value, $valueList, $reason = null, $alias = 'Parameter')
     {
         if (is_array($valueList) === false || count($valueList) === 0)
-            throw new ValidationException("“${alias}”参数的验证模版(StrInI:)格式错误, 必须提供可取值的列表");
+            throw new ValidationException(sprintf("“%s”参数的验证模版(StrInI:)格式错误, 必须提供可取值的列表",$alias));
 
         if (is_string($value)) {
             $lowerValue = mb_strtolower($value);
@@ -1139,7 +1233,7 @@ class Validation
     public static function validateStrNotInI($value, $valueList, $reason = null, $alias = 'Parameter')
     {
         if (is_array($valueList) === false || count($valueList) === 0)
-            throw new ValidationException("“${alias}”参数的验证模版(StrNotInI:)格式错误, 必须提供不可取的值的列表");
+            throw new ValidationException(sprintf("“%s”参数的验证模版(StrNotInI:)格式错误, 必须提供不可取的值的列表",$alias));
 
         if (is_string($value)) {
             $lowerValue = mb_strtolower($value);
@@ -1196,6 +1290,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateStrLenGe($value, $min, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1219,6 +1316,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateStrLenLe($value, $max, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1242,10 +1342,13 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateStrLenGeLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         if ($min > $max)
-            throw new ValidationException("“${alias}”参数的验证模版StrLenGeLe格式错误, min不应该大于max");
+            throw new ValidationException(sprintf("“%s”参数的验证模版StrLenGeLe格式错误, min不应该大于max",$alias));
 
         if (is_string($value)) {
             $len = mb_strlen($value);
@@ -1270,6 +1373,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateByteLen($value, $length, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1293,6 +1399,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateByteLenGe($value, $min, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1316,6 +1425,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateByteLenLe($value, $max, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1339,10 +1451,13 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateByteLenGeLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         if ($min > $max)
-            throw new ValidationException("“${alias}”参数的验证模版ByteLenGeLe格式错误, min不应该大于max");
+            throw new ValidationException(sprintf("“%s”参数的验证模版ByteLenGeLe格式错误, min不应该大于max",$alias));
 
         if (is_string($value)) {
             $len = strlen($value);
@@ -1593,6 +1708,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateEmail($value, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1615,6 +1733,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateUrl($value, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1637,6 +1758,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateIp($value, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1659,6 +1783,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateMac($value, $reason = null, $alias = 'Parameter')
     {
         if (is_string($value)) {
@@ -1693,7 +1820,7 @@ class Validation
     public static function validateRegexp($value, $regexp, $reason = null, $alias = 'Parameter')
     {
         if (is_string($regexp) === false || $regexp === '')
-            throw new ValidationException("“${alias}”参数的验证模版(Regexp:)格式错误, 没有提供正则表达式");
+            throw new ValidationException(sprintf("“%s”参数的验证模版(Regexp:)格式错误, 没有提供正则表达式",$alias));
 
         if (is_string($value)) {
             try {
@@ -1713,7 +1840,7 @@ class Validation
             } catch (\Exception $e) {
                 $msg = $e->getMessage();
                 // 中文正则匹配问题，需要开启utf8模式，在正则表达式后面添加u。如: /^[\x{4e00}-\x{9fa5}]+$/u
-                if (false !== strpos($msg, 'preg_match(): Compilation failed: character value in \x{} or \o{} is too large at offset') ||
+                if (str_contains($msg, 'preg_match(): Compilation failed: character value in \x{} or \o{} is too large at offset') ||
                     $msg === "eRrOrIsBlOcKeD")
                     $result = @preg_match($regexp . 'u', $value);
                 else
@@ -1722,7 +1849,7 @@ class Validation
             if ($result === 1)
                 return $value;
             else if ($result === false)
-                throw new ValidationException("“${alias}”参数的正则表达式验证失败, 请检查正则表达式是否合法");
+                throw new ValidationException(sprintf("“%s”参数的正则表达式验证失败, 请检查正则表达式是否合法",$alias));
             $isTypeError = false;
         } else
             $isTypeError = true;
@@ -1745,6 +1872,9 @@ class Validation
 
     //region array
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateArr($value, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1767,6 +1897,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateArrLen($value, $length, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1800,6 +1933,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateArrLenGe($value, $min, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1833,6 +1969,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateArrLenLe($value, $max, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1866,6 +2005,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateArrLenGeLe($value, $min, $max, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1938,14 +2080,20 @@ class Validation
 
     //region file
 
+    /**
+     * @throws ValidationException
+     */
     private static function _throwFileUploadError($err, $isFilesArray, $alias, $fileIndex)
     {
         if ($isFilesArray)
-            throw new ValidationException("“${alias}[$fileIndex]”上传失败(ERR=$err)");
+            throw new ValidationException(sprintf("“%s[%s]”上传失败(ERR=%s)",$alias,$fileIndex,$err));
         else
-            throw new ValidationException("“${alias}”上传失败(ERR=$err)");
+            throw new ValidationException(sprintf("“%s”上传失败(ERR=%s)",$alias,$err));
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFile($value, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -1980,6 +2128,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileImage($value, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2005,7 +2156,7 @@ class Validation
                     if ($error === UPLOAD_ERR_OK) {
                         if (strpos($type, 'image/') !== 0) {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2026,6 +2177,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileVideo($value, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2051,7 +2205,7 @@ class Validation
                     if ($error === UPLOAD_ERR_OK) {
                         if (strpos($type, 'video/') !== 0) {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2072,6 +2226,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileAudio($value, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2097,7 +2254,7 @@ class Validation
                     if ($error === UPLOAD_ERR_OK) {
                         if (strpos($type, 'audio/') !== 0) {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2118,6 +2275,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileMimes($value, $mimes, $originMimesString = null, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2163,7 +2323,7 @@ class Validation
 
                         if ($match === false) {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2188,6 +2348,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileMaxSize($value, $maxSize, $originSizeString = null, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2214,7 +2377,7 @@ class Validation
                         if ($size > $maxSize) // 超过上限
                         {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2239,6 +2402,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateFileMinSize($value, $minSize, $originSizeString = null, $reason = null, $alias = 'Parameter')
     {
         if (is_array($value)) {
@@ -2265,7 +2431,7 @@ class Validation
                         if ($size < $minSize) // 没到下限
                         {
                             if ($isFilesArray)
-                                $alias = "${alias}[$i]";
+                                $alias = $alias[$i]??'';
                             $hasError = true;
                             break;
                         }
@@ -2294,6 +2460,9 @@ class Validation
 
     //region date & time
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDate($value, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d$/', $value);
@@ -2310,6 +2479,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateFrom($value, $fromTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d$/', $value);
@@ -2343,6 +2515,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateTo($value, $toTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d$/', $value);
@@ -2376,6 +2551,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateFromTo($value, $fromTimestamp, $toTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d$/', $value);
@@ -2410,6 +2588,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateTime($value, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d \d\d:\d\d:\d\d$/', $value);
@@ -2426,6 +2607,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateTimeFrom($value, $fromTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d \d\d:\d\d:\d\d$/', $value);
@@ -2459,6 +2643,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateTimeTo($value, $toTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d \d\d:\d\d:\d\d$/', $value);
@@ -2492,6 +2679,9 @@ class Validation
         throw new ValidationException($error);
     }
 
+    /**
+     * @throws ValidationException
+     */
     public static function validateDateTimeFromTo($value, $fromTimestamp, $toTimestamp, $reason = null, $alias = 'Parameter')
     {
         $result = @preg_match('/^\d\d\d\d-\d?\d-\d?\d \d\d:\d\d:\d\d$/', $value);
@@ -2530,21 +2720,21 @@ class Validation
 
     //region ifs
 
-    protected static function validateIf($value)
+    protected static function validateIf($value):bool
     {
         if (is_string($value))
             $value = mb_strtolower($value);
         return in_array($value, [1, true, '1', 'true', 'yes', 'y'], true);
     }
 
-    protected static function validateIfNot($value)
+    protected static function validateIfNot($value):bool
     {
         if (is_string($value))
             $value = mb_strtolower($value);
         return in_array($value, [0, false, '0', 'false', 'no', 'n'], true);
     }
 
-    protected static function validateIfTrue($value)
+    protected static function validateIfTrue($value):bool
     {
         if (is_string($value))
             return (mb_strtolower($value) === 'true');
@@ -2552,7 +2742,7 @@ class Validation
             return ($value === true);
     }
 
-    protected static function validateIfFalse($value)
+    protected static function validateIfFalse($value):bool
     {
         if (is_string($value))
             return (mb_strtolower($value) === 'false');
@@ -2560,31 +2750,31 @@ class Validation
             return ($value === false);
     }
 
-    protected static function validateIfExist($value)
+    protected static function validateIfExist($value):bool
     {
         return ($value !== null);
     }
 
-    protected static function validateIfNotExist($value)
+    protected static function validateIfNotExist($value):bool
     {
         return ($value === null);
     }
 
-    protected static function validateIfIntEq($value, $compareVal)
+    protected static function validateIfIntEq($value, $compareVal):bool
     {
         return ($value === $compareVal || $value === "$compareVal");
     }
 
-    protected static function validateIfIntNe($value, $compareVal)
+    protected static function validateIfIntNe($value, $compareVal):bool
     {
         return !($value === $compareVal || $value === "$compareVal");
     }
 
-    protected static function validateIfIntGt($value, $compareVal)
+    protected static function validateIfIntGt($value, $compareVal):bool
     {
         if (is_string($value)) {
 
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 return (intval($value) > $compareVal);
             else
                 return false;
@@ -2594,11 +2784,11 @@ class Validation
         return false;
     }
 
-    protected static function validateIfIntGe($value, $compareVal)
+    protected static function validateIfIntGe($value, $compareVal):bool
     {
         if (is_string($value)) {
 
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 return (intval($value) >= $compareVal);
             else
                 return false;
@@ -2608,11 +2798,11 @@ class Validation
         return false;
     }
 
-    protected static function validateIfIntLt($value, $compareVal)
+    protected static function validateIfIntLt($value, $compareVal):bool
     {
         if (is_string($value)) {
 
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 return (intval($value) < $compareVal);
             else
                 return false;
@@ -2622,11 +2812,11 @@ class Validation
         return false;
     }
 
-    protected static function validateIfIntLe($value, $compareVal)
+    protected static function validateIfIntLe($value, $compareVal):bool
     {
         if (is_string($value)) {
 
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 return (intval($value) <= $compareVal);
             else
                 return false;
@@ -2636,10 +2826,10 @@ class Validation
         return false;
     }
 
-    protected static function validateIfIntIn($value, $valuesList)
+    protected static function validateIfIntIn($value, $valuesList):bool
     {
         if (is_string($value)) {
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 $value = intval($value);
             else
                 return false;
@@ -2648,10 +2838,10 @@ class Validation
         return in_array($value, $valuesList, true);
     }
 
-    protected static function validateIfIntNotIn($value, $valuesList)
+    protected static function validateIfIntNotIn($value, $valuesList):bool
     {
         if (is_string($value)) {
-            if (is_numeric($value) && strpos($value, '.') === false)
+            if (is_numeric($value) && str_contains($value, '.') === false)
                 $value = intval($value);
             else
                 return true;
@@ -2660,17 +2850,17 @@ class Validation
         return !in_array($value, $valuesList, true);
     }
 
-    protected static function validateIfStrEq($value, $compareVal)
+    protected static function validateIfStrEq($value, $compareVal):bool
     {
         return ($value === $compareVal);
     }
 
-    protected static function validateIfStrNe($value, $compareVal)
+    protected static function validateIfStrNe($value, $compareVal):bool
     {
         return ($value !== $compareVal);
     }
 
-    protected static function validateIfStrGt($value, $compareVal)
+    protected static function validateIfStrGt($value, $compareVal):bool
     {
         if (is_string($value)) {
             return (strcmp($value, $compareVal) > 0);
@@ -2678,7 +2868,7 @@ class Validation
         return false;
     }
 
-    protected static function validateIfStrGe($value, $compareVal)
+    protected static function validateIfStrGe($value, $compareVal):bool
     {
         if (is_string($value)) {
             return (strcmp($value, $compareVal) >= 0);
@@ -2686,7 +2876,7 @@ class Validation
         return false;
     }
 
-    protected static function validateIfStrLt($value, $compareVal)
+    protected static function validateIfStrLt($value, $compareVal):bool
     {
         if (is_string($value)) {
             return (strcmp($value, $compareVal) < 0);
@@ -2694,7 +2884,7 @@ class Validation
         return false;
     }
 
-    protected static function validateIfStrLe($value, $compareVal)
+    protected static function validateIfStrLe($value, $compareVal):bool
     {
         if (is_string($value)) {
             return (strcmp($value, $compareVal) <= 0);
@@ -2702,14 +2892,14 @@ class Validation
         return false;
     }
 
-    protected static function validateIfStrIn($value, $valuesList)
+    protected static function validateIfStrIn($value, $valuesList):bool
     {
         if (is_string($value) === false) // 不是字符串
             return false;
         return in_array($value, $valuesList, true);
     }
 
-    protected static function validateIfStrNotIn($value, $valuesList)
+    protected static function validateIfStrNotIn($value, $valuesList):bool
     {
         if (is_string($value) === false) // 不是字符串
             return true;
@@ -2725,7 +2915,7 @@ class Validation
      * 设置当前语言代码。默认lang code是空串""（无效的）
      * @param $langCode string 语言代码
      */
-    static public function setLangCode($langCode)
+    static public function setLangCode($langCode):void
     {
         if (is_string($langCode))
             self::$langCode = $langCode;
@@ -2737,7 +2927,7 @@ class Validation
      * @var array 将继承链上所有类的（旧的）错误提示信息模版合并后，缓存在这个数组中。
      *      key = 调用类的类名，value = 合并后的 $langCodeToErrorTemplates
      */
-    private static $langCodeToErrorTemplatesCache = [];
+    private static array $langCodeToErrorTemplatesCache = [];
 
     /**
      * @var array “错误提示信息模版”翻译对照表
@@ -2746,7 +2936,7 @@ class Validation
      *     旧的翻译表 static::$langCodeToErrorTemplates 仍然有效。
      *     如果新旧翻译表同时提供，优先新的，新表中查不到再使用旧的。
      */
-    protected static $langCodeToErrorTemplates = [
+    protected static array $langCodeToErrorTemplates = [
 //        'en-us' => [],
     ];
 
@@ -2754,7 +2944,7 @@ class Validation
      * @var array 将继承链上所有类的翻译对照表合并后，缓存在这个数组中。
      *      key = 调用类的类名，value = 合并后的 $langCode2ErrorTemplates
      */
-    private static $langCode2ErrorTemplatesCache = [];
+    private static array $langCode2ErrorTemplatesCache = [];
 
     /**
      * @var array “错误提示信息模版”翻译对照表。
@@ -2763,7 +2953,7 @@ class Validation
      * 旧的翻译表 static::$langCodeToErrorTemplates 仍然有效。
      * 如果新旧翻译表同时提供，优先新的，新表中查不到再使用旧的。
      */
-    protected static $langCode2ErrorTemplates = [
+    protected static array $langCode2ErrorTemplates = [
 //        "zh-tw" => [
 //            'Int' => '“{{param}}”必須是整數',
 //            'IntGt' => '“{{param}}”必須大於 {{min}}',
@@ -2776,6 +2966,9 @@ class Validation
 //        ],
     ];
 
+    /**
+     * @throws ValidationException
+     */
     private static function arrayMergeRecursive($arr1, $arr2)
     {
         if ($arr1 === null)
@@ -2792,7 +2985,7 @@ class Validation
 
         foreach ($arr2 as $key => $value) {
             if (is_array($value)) {
-                $oldValue = isset($arr1[$key]) ? $arr1[$key] : null;
+                $oldValue = $arr1[$key] ?? null;
                 if (is_array($oldValue))
                     $value = self::arrayMergeRecursive($oldValue, $value);
             }
@@ -2801,6 +2994,9 @@ class Validation
         return $arr;
     }
 
+    /**
+     * @throws ValidationException
+     */
     final protected static function getErrorTemplate($validatorName)
     {
         $calledClassName = static::class;
@@ -2828,7 +3024,7 @@ class Validation
             }
         }
 
-        $calledClassName = static::class;
+//        $calledClassName = static::class;
         if (isset(self::$errorTemplatesCache[$calledClassName]))
             $errorTemplates = self::$errorTemplatesCache[$calledClassName];
         else {
@@ -2852,7 +3048,7 @@ class Validation
             $template = "验证器 $validatorName 验证失败，并且该验证器没有错误提示信息模版";
 
         // 兼容性代码
-        $calledClassName = static::class;
+//        $calledClassName = static::class;
         if (isset(self::$langCodeToErrorTemplatesCache[$calledClassName]))
             $langCodeToErrorTemplates = self::$langCodeToErrorTemplatesCache[$calledClassName];
         else {
@@ -2884,13 +3080,16 @@ class Validation
      * @var array 将继承链上所有类的翻译对照表合并后，缓存在这个数组中。
      *      key = 调用类的类名，value = 合并后的 $langCodeToTranslations
      */
-    private static $langCodeToTranslationsCache = [];
+    private static array $langCodeToTranslationsCache = [];
 
     // 文本翻译对照表
-    protected static $langCodeToTranslations = [
+    protected static array $langCodeToTranslations = [
 //        "en-us" => [],
     ];
 
+    /**
+     * @throws ValidationException
+     */
     private static function translateText($text)
     {
         $calledClassName = static::class;
@@ -2926,14 +3125,14 @@ class Validation
      * @var array 将继承链上所有类的错误提示信息模版合并后，缓存在这个数组中。
      *      key = 调用类的类名，value = 合并后的 $errorTemplates
      */
-    private static $errorTemplatesCache = [];
+    private static array $errorTemplatesCache = [];
 
     /**
      * @var array 验证失败时的错误提示信息的模板
      *
      * 输入值一般为字符串
      */
-    protected static $errorTemplates = [
+    protected static array $errorTemplates = [
         // 整型（不提供length检测,因为负数的符号位会让人混乱, 可以用大于小于比较来做到这一点）
         'Int' => '“{{param}}”必须是整数',
         'IntEq' => '“{{param}}”必须等于 {{value}}',
@@ -3043,7 +3242,7 @@ class Validation
     ];
 
     // 所有验证器格式示例
-    static private $sampleFormats = [
+        private static array $sampleFormats = [
         // 整型（不提供length检测,因为负数的符号位会让人混乱, 可以用大于小于比较来做到这一点）
         'Int' => 'Int',
         'IntEq' => 'IntEq:100',
@@ -3295,7 +3494,7 @@ class Validation
                         $validatorName = $segment;
                         $methodName = 'validate' . $validatorName;
                         if (method_exists(static::class, $methodName) === false)
-                            throw new ValidationException("未知的验证器\"${validatorName}\"");
+                            throw new ValidationException(sprintf("未知的验证器 \"%s\"",$validatorName));
 
                         if (strpos($validatorName, 'Custom') === 0) {
                             if (strlen($validatorName) == 6)
@@ -3305,9 +3504,9 @@ class Validation
                             $reflectParams = $method->getParameters();
                             $pCount = count($reflectParams) - 3;
                             if ($pCount < 0) {
-                                throw new ValidationException("自定义验证器\"${validatorName}\"的实现方法 $methodName() 应该至少有3个参数");
+                                throw new ValidationException(sprintf("自定义验证器\"%s\"的实现方法 %s() 应该至少有3个参数",$validatorName,$methodName));
                             } else if ($pCount > 0) {
-                                throw new ValidationException("自定义验证器\"${validatorName}\"应该有 $pCount 个参数");
+                                throw new ValidationException(sprintf("自定义验证器\"%s\"应该有 %s 个参数",$validatorName,$pCount));
                             }
                         }
 
@@ -3321,7 +3520,7 @@ class Validation
                             $p = '';
                     }
                     if (strlen($validatorName) === 0) {
-                        throw new ValidationException("“${segment}”中的':'号前面没有验证器");
+                        throw new ValidationException(sprintf("“%s”中的':'号前面没有验证器",$segment));
                     }
                     $validatorInfo = null;
                     switch ($validatorName) {
@@ -3540,19 +3739,19 @@ class Validation
                                 $reflectParams = $method->getParameters();
                                 $pCount = count($reflectParams) - 3;
                                 if ($pCount < 0) {
-                                    throw new ValidationException("自定义验证器\"${validatorName}\"的实现方法 $methodName() 应该至少有3个参数");
+                                    throw new ValidationException(sprintf("自定义验证器\"%s\"的实现方法 %s() 应该至少有3个参数",$validatorName,$methodName));
                                 } else if ($pCount == 0) {
-                                    throw new ValidationException("自定义验证器\"${validatorName}\"应该没有参数");
+                                    throw new ValidationException(sprintf("自定义验证器\"%s\"应该没有参数",$validatorName));
                                 } else {
                                     $parserMethod = "parseParamsOf" . $validatorName;
                                     if (method_exists($className, $parserMethod)) { // 如果实现了参数解析方法
                                         $params = call_user_func_array([static::class, $parserMethod], [$p]);
                                         if (!is_array($params) || count($params) === 0 || $pCount != count($params))
-                                            throw new ValidationException("自定义验证器\"${validatorName}\"的参数解析方法 $parserMethod() 应该返回含有 $pCount 个参数的数组");
+                                            throw new ValidationException(sprintf("自定义验证器\"%s\"的参数解析方法 %s() 应该返回含有 %s 个参数的数组",$validatorName,$parserMethod,$pCount));
                                     } else {
                                         $params = explode(',', $p);
                                         if ($pCount != count($params))
-                                            throw new ValidationException("自定义验证器\"${validatorName}\"应该有 $pCount 个参数");
+                                            throw new ValidationException(sprintf("自定义验证器\"%s\"应该有 %s 个参数",$validatorName,$pCount));
                                     }
                                     $validatorInfo = [$validatorName];
                                     for ($x = 0; $x < $pCount; $x++) {
@@ -3562,7 +3761,7 @@ class Validation
                                 }
                                 break;
                             }
-                            throw new ValidationException("未知的验证器\"${validatorName}\"");
+                            throw new ValidationException(sprintf("未知的验证器\"%s\"",$validatorName));
                     }
                     if ($validatorInfo)
                         $validators[] = $validatorInfo;
@@ -3581,17 +3780,20 @@ class Validation
         ];
     }
 
+    /**
+     * @throws ValidationException
+     */
     private static function _throwFormatError($validatorName)
     {
         $sampleFormat = @self::$sampleFormats[$validatorName];
         if ($sampleFormat === null)
-            throw new ValidationException("验证器${validatorName}格式错误");
-        throw new ValidationException("验证器${validatorName}格式错误, 正确的格式是: $sampleFormat");
+            throw new ValidationException(sprintf("验证器%s格式错误",$validatorName));
+        throw new ValidationException(sprintf("验证器%s格式错误, 正确的格式是: %s",$validatorName,$sampleFormat));
     }
 
-    private static function _isIntOrIntString($value)
+    private static function _isIntOrIntString($value):bool
     {
-        return (is_numeric($value) && strpos($value, '.') === false);
+        return (is_numeric($value) && str_contains($value, '.') === false);
     }
 
     /**
@@ -3604,7 +3806,7 @@ class Validation
         $vals = explode(',', $value);
         $ints = [];
         foreach ($vals as $val) {
-            if (is_numeric($val) === false || strpos($val, '.') !== false)
+            if (is_numeric($val) === false || str_contains($val, '.'))
                 return false; // 检测到了非int
             $ints[] = intval($val);
         }
@@ -3622,8 +3824,6 @@ class Validation
     {
         if (strlen($value)) {
             $vals = explode(',', $value);
-            if ($vals === false)
-                return false;
 //            $vals = array_unique($vals); // 不需要去重, 不影响结果. 程序员不应该写出重复的字符串
         } else
             $vals = [''];
@@ -3756,17 +3956,17 @@ class Validation
             if (($pos = strpos($mime, '/')) === false) // 没有斜杠'/'. 例: jpg 或 avi
             {
                 if ($mime === '*')
-                    throw new ValidationException("无效的MIME“${mime}”");
+                    throw new ValidationException(sprintf("无效的MIME“%s”",$mime));
                 $mime = "/$mime";
             } else // 有斜杠'/'. 例: image/jpeg 或 video/*
             {
                 $parts = explode('/', $mime);
                 if (count($parts) !== 2)
-                    throw new ValidationException("无效的MIME“${mime}”");
+                    throw new ValidationException(sprintf("无效的MIME“%s”",$mime));
                 $type = $parts[0];
                 $ext = $parts[1];
                 if (strlen($type) === 0 || strlen($ext) === 0 || $type === '*')
-                    throw new ValidationException("无效的MIME“${mime}”");
+                    throw new ValidationException(sprintf("无效的MIME“%s”",$mime));
 
                 // 将形如"video/*"的转化为"video/"以方便后续处理
                 if ($ext === '*')
@@ -3795,7 +3995,7 @@ class Validation
 
         $varName = $params[0];
         $value = $params[1];
-        self::validateInt($value, "“$validatorName:${paramstr}”中“${varName}”后面必须是整数，实际上却是“${value}”");
+        self::validateInt($value, sprintf("“%s:%s”中“%s”后面必须是整数，实际上却是“%s”",$validatorName,$paramstr,$varName,$value));
         return [$varName, intval($value)];
     }
 
@@ -3815,7 +4015,7 @@ class Validation
         $varName = $params[0];
 //        $value = $params[1];
         if (strlen($varName) == 0) // 简单检测
-            throw new ValidationException("“$validatorName:${paramstr}”中“${$validatorName}”后面必须是一个参数（变量）名，实际上却是空串");
+            throw new ValidationException(sprintf("“%s:%s”中“%s”后面必须是一个参数（变量）名，实际上却是空串",$validatorName,$paramstr,$validatorName));
         return $params;
     }
 
@@ -3823,7 +4023,6 @@ class Validation
      * 解析 IfXxx:varname 中的冒号后面的部分（1个条件参数后面带0个值）
      * @param $paramstr string
      * @return string|false 出错返回false, 否则返回 'varname'
-     * @throws ValidationException
      */
     private static function _parseIfXxxWith1Param($paramstr)
     {
@@ -3840,7 +4039,6 @@ class Validation
      * @param $paramstr string
      * @param $validatorName string 条件验证子'IfStrXxx'
      * @return array|false 出错返回false, 否则返回 ['varname', ['a','b','abc']]
-     * @throws ValidationException
      */
     private static function _parseIfXxxWith1ParamMultiStrings($paramstr, $validatorName)
     {
@@ -3875,7 +4073,7 @@ class Validation
         $vals = [];
         for ($i = 1; $i < $c; $i++) {
             $intVal = $params[$i];
-            self::validateInt($intVal, "“$validatorName:${paramstr}”中“${varName}”后面必须全部是整数，实际上却包含了“${intVal}”");
+            self::validateInt($intVal, sprintf("“%s:%s”中“%s”后面必须全部是整数，实际上却包含了“%s”",$validatorName,$paramstr,$varName,$intVal));
             $vals[] = intval($intVal);
         }
         return [$varName, $vals];
@@ -3925,7 +4123,7 @@ class Validation
                     $ifName = $validatorInfo[0];
                     $method = 'validate' . ucfirst($ifName);
                     if (method_exists(self::class, $method) === false)
-                        throw new ValidationException("找不到条件判断${$ifName}的验证方法");
+                        throw new ValidationException(sprintf("找不到条件判断%s的验证方法",$ifName));
 
                     $varkeypath = $validatorInfo[1]; // 条件参数的路径
 
@@ -3933,15 +4131,15 @@ class Validation
                     if (strpos($varkeypath, '.') === 0) // 以.开头, 是相对路径
                     {
                         $key = substr($varkeypath, 1); // 去掉开头的.号
-                        self::validateVarName($key, "IfXxx中的条件参数“${key}”不是合法的变量名");
-                        $ifParamValue = isset($siblings[$key]) ? $siblings[$key] : null;
+                        self::validateVarName($key, sprintf("IfXxx中的条件参数“%s”不是合法的变量名",$key));
+                        $ifParamValue = $siblings[$key] ?? null;
                     } else // 绝对路径
                     {
                         // 解析路径
                         $asterisksCount = 0;
                         $keys = self::_compileKeypath($varkeypath, $asterisksCount);
                         if ($asterisksCount > 0) {
-                            throw new ValidationException("IfXxx中的条件参数“${varkeypath}”中不得包含*号");
+                            throw new ValidationException(sprintf("IfXxx中的条件参数“%s”中不得包含*号",$varkeypath));
                         }
 
                         $ifParamValue = self::getParamValueForIf($originParams, $keys);
@@ -3956,7 +4154,7 @@ class Validation
                             if ($ifParamValue === null && // 依赖的条件参数不存在
                                 $ifName !== 'IfExist' && $ifName !== 'IfNotExist'
                             ) {
-                                throw new ValidationException("必须提供条件参数“${varkeypath}”，因为“${alias}”的验证依赖它");
+                                throw new ValidationException(sprintf("必须提供条件参数“%s”，因为“%s”的验证依赖它",$varkeypath,$alias));
                             }
                         } else { // 如果参数不存在，则该参数不检测
                             return $value;
@@ -3966,7 +4164,7 @@ class Validation
                         if ($ifParamValue === null && // 依赖的条件参数不存在
                             $ifName !== 'IfExist' && $ifName !== 'IfNotExist'
                         ) {
-                            throw new ValidationException("必须提供条件参数“${varkeypath}”，因为“${alias}”的验证依赖它");
+                            throw new ValidationException(sprintf("必须提供条件参数“%s”，因为“%s”的验证依赖它",$varkeypath,$alias));
                         }
                     }
 
@@ -4051,7 +4249,7 @@ class Validation
             throw new ValidationException('参数$validations中包含空的参数名称');
 
         if (@preg_match('/^[a-zA-Z0-9_.\[\]*]+$/', $keypath) !== 1)
-            throw new ValidationException("非法的参数名称“${keypath}”");
+            throw new ValidationException(sprintf("非法的参数名称“%s”",$keypath));
 
         $keys = explode('.', $keypath); // 不可能返回空数组. $keys中的数组还没有解析
 
@@ -4061,38 +4259,38 @@ class Validation
         // 尝试识别普通数组, 形如'varname[*]'
         foreach ($keys as $key) {
             if (strlen($key) === 0)
-                throw new ValidationException("“${keypath}”中包含空的参数名称");
+                throw new ValidationException(sprintf("“%s”中包含空的参数名称",$keypath));
 
             $i = strpos($key, '[');
             if ($i === false) // 普通的key
             {
-                if (strpos($key, '*') !== false)
-                    throw new ValidationException("“${keypath}”中'*'号只能处于方括号[]中");
-                if (strpos($key, ']') !== false)
-                    throw new ValidationException("“${key}”中包含了非法的']'号");
+                if (str_contains($key, '*'))
+                    throw new ValidationException(sprintf("“%s”中'*'号只能处于方括号[]中",$keypath));
+                if (str_contains($key, ']'))
+                    throw new ValidationException(sprintf("“%s”中包含了非法的']'号",$key));
                 if (@preg_match('/^[0-9]/', $key) === 1) {
                     if (count($keys) === 1)
-                        throw new ValidationException("参数名称“${keypath}”不得以数字开头");
+                        throw new ValidationException(sprintf("参数名称“%s”不得以数字开头",$keypath));
                     else
-                        throw new ValidationException("“${keypath}”中包含了以数字开头的参数名称“${key}”");
+                        throw new ValidationException(sprintf("“%s”中包含了以数字开头的参数名称“%s”",$keypath,$key));
                 }
                 $filteredKeys[] = $key;
                 continue;
             } else if ($i === 0) {
-                throw new ValidationException("“${keypath}”中'['号前面没有参数名称");
+                throw new ValidationException(sprintf("“%s”中'['号前面没有参数名称",$keypath));
             } else {
                 $j = strpos($key, ']');
                 if ($j === false)
-                    throw new ValidationException("“${key}”中的'['号之后缺少']'");
+                    throw new ValidationException(sprintf("“%s”中的'['号之后缺少']'",$key));
                 if ($i > $j)
-                    throw new ValidationException("“${key}”中'[', ']'顺序颠倒了");
+                    throw new ValidationException(sprintf("“%s”中'[', ']'顺序颠倒了",$key));
 
                 // 识别普通数组的变量名（'[*]'之前的部分）
                 $varName = substr($key, 0, $i);
-                if (strpos($varName, '*') !== false)
-                    throw new ValidationException("“${key}”中包含了非法的'*'号");
+                if (str_contains($varName, '*'))
+                    throw new ValidationException(sprintf("“%s”中包含了非法的'*'号",$key));
                 if (@preg_match('/^[0-9]/', $varName) === 1)
-                    throw new ValidationException("“${keypath}”中包含了以数字开头的参数名称“${varName}”");
+                    throw new ValidationException(sprintf("“%s”中包含了以数字开头的参数名称“%s”",$keypath,$varName));
                 $filteredKeys[] = $varName;
 
                 // 识别普通数组的索引值
@@ -4103,7 +4301,7 @@ class Validation
                 } else if (is_numeric($index))
                     $filteredKeys[] = intval($index);
                 else
-                    throw new ValidationException("“${key}”中的方括号[]之间只能包含'*'号或数字");
+                    throw new ValidationException(sprintf("“%s”中的方括号[]之间只能包含'*'号或数字",$key));
 
                 // 尝试识别多维数组
                 $len = strlen($key);
@@ -4111,10 +4309,10 @@ class Validation
                     $j++;
                     $i = strpos($key, '[', $j);
                     if ($i !== $j)
-                        throw new ValidationException("“${key}”中的“[$index]”之后包含非法字符");
+                        throw new ValidationException(sprintf("“%s”中的“[%s]”之后包含非法字符",$key,$index));
                     $j = strpos($key, ']', $i);
                     if ($j === false)
-                        throw new ValidationException("“${key}”中的'['号之后缺少']'");
+                        throw new ValidationException(sprintf("“%s”中的'['号之后缺少']'",$key));
 
                     $index = substr($key, $i + 1, $j - $i - 1);
                     if ($index === '*') {
@@ -4123,7 +4321,7 @@ class Validation
                     } else if (is_numeric($index))
                         $filteredKeys[] = intval($index);
                     else
-                        throw new ValidationException("“${key}”中的方括号[]之间只能包含*号或数字");
+                        throw new ValidationException(sprintf("“%s”中的方括号[]之间只能包含*号或数字",$key));
                 }
             }
         }
@@ -4211,7 +4409,7 @@ class Validation
                 self::validateArr($siblings, null, $keyPath);
             else
                 self::validateObj($siblings, null, $keyPath);
-            $value = isset($siblings[$key]) ? $siblings[$key] : null;
+            $value = $siblings[$key] ?? null;
 
             if ($keyPath === '')
                 $keyPath = $key;
@@ -4289,7 +4487,7 @@ class Validation
                     self::validateArr($siblings, null, $keyPrefix);
                 else
                     self::validateObj($siblings, null, $keyPrefix);
-                $value = isset($siblings[$key]) ? $siblings[$key] : null;
+                $value = $siblings[$key] ?? null;
             }
 
             if ($keyPrefix === '')
